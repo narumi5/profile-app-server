@@ -16,4 +16,9 @@ export class AppService {
     name = 'narumi';
     return name;
   }
+  getHello5(): string {
+    let name = 'hello Takuya';
+    name = 'get hello takuya';
+    return name;
+  }
 }

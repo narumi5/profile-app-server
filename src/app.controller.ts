@@ -20,4 +20,8 @@ export class AppController {
   @Get("4")
   getHello4(): string {
     return this.appService.getHello4();
+  }
+  @Get("5")
+  getHello5(): string {
+    return this.appService.getHello5();
   }}
