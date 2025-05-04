@@ -1,10 +1,4 @@
-import {
-  IsBoolean,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateTodoDTO {
   @IsString()
@@ -38,10 +32,8 @@ export class UpdateTodoDTO {
   description: string;
 }
 
-  export class DeleteTodoDTO {
-    @IsNumber()
-    @IsNotEmpty()
-    id: number;
-  
-    
+export class DeleteTodoDTO {
+  @IsNumber()
+  @IsNotEmpty()
+  id: number;
 }
