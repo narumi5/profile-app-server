@@ -4,6 +4,8 @@ import { DeepPartial, Repository } from 'typeorm';
 import { CreateUserDTO, UpdateUserDTO } from '../dto/user.dto';
 import { UsersEntity } from '../entities/users.entity';
 
+
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -31,5 +33,11 @@ export class UsersService {
 
   async deleteOne(user: UsersEntity): Promise<UsersEntity> {
     return await user.remove();
+  }
+
+  async findUserByEmail(email: UsersEntity['email']): Promise<UsersEntity | null> {
+   
+    console.log(await this.usersRepository.findOneBy({ email }))
+    return this.usersRepository.findOneBy({ email });
   }
 }

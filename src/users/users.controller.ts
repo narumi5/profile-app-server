@@ -9,10 +9,14 @@ import {
   Param,
   Post,
   Put,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDTO, UpdateUserDTO } from '../dto/user.dto';
 import { UsersEntity } from '../entities/users.entity';
 import { UsersService } from './users.service';
+import { PasswordOmitUser } from './users.type';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 
 @Controller('users')
 export class UsersController {
@@ -38,6 +42,13 @@ export class UsersController {
     }
     return selected;
   }
+
+  @Get('profile')
+  @UseGuards(JwtGuard)
+  profile(@Request() req: { user: PasswordOmitUser }) {
+    return req.user;
+  }
+  
   @Get(':id')
   async readOne(@Param('id') id: number): Promise<UsersEntity> {
     const selected = await this.usersService.readOne(id);
@@ -72,4 +83,6 @@ export class UsersController {
       throw new HttpException('Internal server error', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  
 }

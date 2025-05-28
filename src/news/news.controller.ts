@@ -9,6 +9,7 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { NewsService } from './news.service';
 import { CreateTodoDTO, DeleteTodoDTO, UpdateTodoDTO } from 'src/dto/todos.dto';
@@ -17,6 +18,7 @@ import { UsersService } from 'src/users/users.service';
 import { title } from 'process';
 import { CreateNewsDTO, DeleteNewsDTO, UpdateNewsDTO } from 'src/dto/news.dto';
 import { NewsEntity } from 'src/entities/news.entity';
+import { JwtGuard } from 'src/auth/guards/jwt.guard';
 
 @Controller('news')
 export class NewsController {
@@ -36,6 +38,7 @@ export class NewsController {
   }
 
   @Get()
+
   async readAll(): Promise<NewsEntity[]> {
     const selected = await this.newsService.readAll();
     if (!selected) {

@@ -7,21 +7,29 @@ import {
 } from 'class-validator';
 
 export class CreateUserDTO {
-  @IsString()
-  @IsNotEmpty()
-  firstName: string;
+  // @IsString()
+  // @IsNotEmpty()
+  // firstName: string;
+
+  // @IsString()
+  // @IsNotEmpty()
+  // lastName: string;
+
+  // @IsNumber()
+  // @IsNotEmpty()
+  // age: number;
+
+  // @IsBoolean()
+  // @IsNotEmpty()
+  // isActive: boolean;
 
   @IsString()
   @IsNotEmpty()
-  lastName: string;
+  email: string;
 
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  age: number;
-
-  @IsBoolean()
-  @IsNotEmpty()
-  isActive: boolean;
+  hashedPassword :string;
 }
 
 export class UpdateUserDTO {
@@ -44,4 +52,6 @@ export class UpdateUserDTO {
   @IsBoolean()
   @IsNotEmpty()
   isActive: boolean;
+
+  
 }

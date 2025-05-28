@@ -4,7 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.enableCors({
     origin: 'http://localhost:3000', // Next.js のフロントエンドのURL
     credentials: true, // Cookieの送受信を許可
@@ -13,4 +13,5 @@ async function bootstrap() {
   });
   await app.listen(process.env.PORT ?? 8000);
 }
+
 bootstrap();
