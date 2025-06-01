@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, Timestamp } from 'typeorm';
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn, Timestamp } from 'typeorm';
+import { ReviewsEntity } from './reviews.entity';
 
 @Entity('users')
 export class UsersEntity extends BaseEntity {
@@ -29,12 +30,15 @@ export class UsersEntity extends BaseEntity {
   @Column()
   hobbiies: string;
 
-  @Column()
-  deleted_at: Timestamp;
+  @Column({ type: 'timestamp', nullable: true }) // 型を明示的に指定
+  deleted_at: Date;
 
-  @Column()
-  created_at: Timestamp;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' }) // 型を明示的に指定
+  created_at: Date;
 
-  @Column()
-  updated_at: Timestamp;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' }) // 型を明示的に指定
+  updated_at: Date;
+
+  @OneToMany(() => ReviewsEntity, (review) => review.user)
+  reviews: ReviewsEntity[]; 
 }

@@ -13,16 +13,16 @@ export class PostsEntity extends BaseEntity {
 
   @Column({ default: 'ACTIVE' })
   status: string;
-  
+
   @Column()
   content: string;
 
-  @Column()
-  deleted_at: Timestamp;
+  @Column({ type: 'timestamp', nullable: true }) // 型を明示的に指定
+  deleted_at: Date;
 
-  @Column()
-  created_at: Timestamp;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' }) // 型を明示的に指定
+  created_at: Date;
 
-  @Column()
-  updated_at: Timestamp;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' }) // 型を明示的に指定
+  updated_at: Date;
 }

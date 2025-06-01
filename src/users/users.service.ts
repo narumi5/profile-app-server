@@ -13,6 +13,7 @@ export class UsersService {
     private readonly usersRepository: Repository<UsersEntity>,
   ) {}
 
+
   async createOne(dto: CreateUserDTO): Promise<UsersEntity> {
     return await this.usersRepository.save(dto);
   }
@@ -38,5 +39,18 @@ export class UsersService {
   async findUserByEmail(email: UsersEntity['email']): Promise<UsersEntity | null> {
    
     return this.usersRepository.findOneBy({ email });
+  }
+
+  async  getUserWithReviews(userId: number) {
+    const user = await this.usersRepository.findOne({
+      where: { id: userId },
+      relations: ['reviews'], // リレーションを指定
+    });
+  
+    console.log(user);
+    console.log(user?.reviews); 
+  
+    return user; // ユーザーとそのレビューを返す
+  // ユーザーに関連するレビューを表示
   }
 }

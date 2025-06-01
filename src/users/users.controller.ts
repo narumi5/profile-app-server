@@ -84,5 +84,15 @@ export class UsersController {
     }
   }
 
+  @Get('user')
+  async getUserWithReviews(@Request() req: { user: PasswordOmitUser }) {
+    const userId = req.user.id;
+    const user = await this.usersService.getUserWithReviews(userId);
+    if (!user) {
+      throw new NotFoundException({ message: 'ユーザーが見つかりません' });
+    }
+    return user;
+  }
+
   
 }

@@ -37,7 +37,6 @@ erDiagram
     reviews {
         bigint id PK "ID"
         bigint user_id FK "ユーザーID:users.id"
-        varchar content "内容"
         bigint post_id FK "投稿のID:post.id"
         varchar review "レビュー本文"
         int rating "評価"

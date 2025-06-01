@@ -23,9 +23,9 @@ export class AuthService {
       await this.usersService.createOne({ email, hashedPassword });
       return { message: 'Signup was successful' };
     } catch (e) {
-      if (e.code === '23505') {
-        throw new ConflictException('This email is already taken');
-      }
+      // if (e.code === '23505') {
+      //   throw new ConflictException('This email is already taken');
+      // }
       throw e;
     }
   }
