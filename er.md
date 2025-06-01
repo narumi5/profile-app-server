@@ -1,6 +1,3 @@
-
-
-
 # ER図
 
 ## プロフィール評価アプリデータベース
@@ -13,19 +10,24 @@ erDiagram
 
     users {
         bigint id PK "ID"
+        varchar status "ステータス"
+        varchar email FK "Eメール"
+        varchar hashedPassword "暗号化されたパスワード"
         varchar username "ユーザー名"
-        varchar birthday "生年月日"
+        date birthday "生年月日"
         tinyint gender "性別"
-        varchar hometown "出身地"
+        varchar prefecture "都道府県"
         varchar hobbies　"趣味"
         timestamp deleted_at "削除日時"
         timestamp created_at "作成日時"
         timestamp updated_at "更新日時"
+
     }
 
     posts {
         bigint id PK "ID"
         bigint user_id FK "ユーザーID:users.id"
+        varchar status "ステータス"
         varchar content "内容"
         timestamp deleted_at "削除日時"
         timestamp created_at "作成日時"

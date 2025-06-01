@@ -1,25 +1,40 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, Timestamp } from 'typeorm';
 
-@Entity("users")
-export class UsersEntity extends BaseEntity{
+@Entity('users')
+export class UsersEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: true })
-  firstName: string;
-
-  @Column({ nullable: true })
-  lastName: string;
-
-  @Column({ default: true })
-  isActive: boolean;
-
-  @Column({ nullable: true })
-  age: number;
+  @Column({ default: 'ACTIVE' })
+  status: string;
 
   @Column({ unique: true })
-  email: string
+  email: string;
 
   @Column()
-  hashedPassword: string
+  hashedPassword: string;
+
+  @Column()
+  username: string;
+
+  @Column()
+  birthday: Date;
+
+  @Column()
+  gender: number;
+
+  @Column()
+  prefecture: string;
+
+  @Column()
+  hobbiies: string;
+
+  @Column()
+  deleted_at: Timestamp;
+
+  @Column()
+  created_at: Timestamp;
+
+  @Column()
+  updated_at: Timestamp;
 }
