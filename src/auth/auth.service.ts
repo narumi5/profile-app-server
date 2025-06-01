@@ -14,11 +14,11 @@ export class AuthService {
   ) {}
 
   async signup({ email, password }: AuthDto): Promise<Message> {
+    const hashedPassword = await bcrypt.hash(password, 12);
     const existingUser = await this.usersService.findUserByEmail(email);
     if (existingUser) {
       throw new ConflictException('このメールアドレスは既に使われています');
     }
-    const hashedPassword = await bcrypt.hash(password, 12);
     try {
       await this.usersService.createOne({ email, hashedPassword });
       return { message: 'Signup was successful' };
@@ -46,8 +46,8 @@ export class AuthService {
     return passwordOmitUser as PasswordOmitUser;
   }
 
-  async login({ id: userId, email }: PasswordOmitUser): Promise<JwtToken> {
-    const payload: JwtPayload = { sub: userId, email };
+  async login({ email: email }: PasswordOmitUser): Promise<JwtToken> {
+    const payload: JwtPayload = { email:  email };
     return {
       access_token: this.jwtService.sign(payload),
     };

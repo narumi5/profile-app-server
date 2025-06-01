@@ -9,7 +9,7 @@ export type Message = {
   };
 
   export type JwtPayload = {
-    sub: UsersEntity['id'];
+    
     email: UsersEntity['email'];
   };
 
